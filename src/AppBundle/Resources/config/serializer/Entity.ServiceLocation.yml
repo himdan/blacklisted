@@ -1,0 +1,13 @@
+AppBundle\Entity\ServiceLocation:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+        longtitude:
+            expose: true
+        latitude:
+            expose: true
+        address:
+            expose: true
+        description:
+            expose: true

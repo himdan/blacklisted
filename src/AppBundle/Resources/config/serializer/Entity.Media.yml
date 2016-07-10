@@ -1,0 +1,14 @@
+AppBundle\Entity\Media:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+        alternative:
+            expose: true
+        path:
+            expose: true
+        type:
+            expose: true
+        extension:
+            expose: true
+

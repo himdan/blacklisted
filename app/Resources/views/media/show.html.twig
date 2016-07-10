@@ -1,0 +1,57 @@
+{% extends 'frontoffice.html.twig' %}
+
+{% block content %}
+    <div class="container">
+    <h1>Media</h1>
+    <div class="row">
+    <div class="col-sm-12">  
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ medium.id }}</td>
+            </tr>
+            <tr>
+                <th>image</th>
+                <td><img  class="img-responsive" src="{{ asset(medium.webpath) }}" alt="{{ medium.alternative }}" title="{{ medium.alternative }}"/></td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ medium.type }}</td>
+            </tr>
+            <tr>
+                <th>Extension</th>
+                <td>{{ medium.extension }}</td>
+            </tr>
+            <tr>
+                <th>Path</th>
+                <td>{{ medium.path }}</td>
+            </tr>
+            <tr>
+                <th>Alternative</th>
+                <td>{{ medium.alternative }}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{% if medium.createdAt %}{{ medium.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('media_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('media_edit', { 'id': medium.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+{% endblock %}

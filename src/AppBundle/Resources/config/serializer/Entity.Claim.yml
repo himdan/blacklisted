@@ -1,0 +1,19 @@
+AppBundle\Entity\Claim:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+        title:
+            expose: true
+        description:
+            expose: true
+        medias:
+            expose: true
+        category:
+            expose: true
+        createdAt:
+            expose: true
+        location:
+            expose: true
+        isservice:
+            expose: true    

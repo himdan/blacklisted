@@ -1,0 +1,8 @@
+<h1>claims</h1>
+<div>
+    {% for claim in claims %}
+        <h2>{{ claim.title|capitalize }}</h2>
+        <p>{{ claim.description  }}</p>
+        <p>{{ claim.account.username }}</p>
+    {% endfor %}
+</div>

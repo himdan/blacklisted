@@ -1,0 +1,11 @@
+<h1>{{ claim.title|capitalize }}</h1>
+<p>{{ claim.description }}</p>
+<h2>Media</h2>
+<div>
+    {% for medium in claim.medias %}
+        {% if (medium.type=='image/png')and (medium.type=='image/jpeg') %}
+            <img src="{{ asset(medium.webPath) }}">
+         {% endif %}
+
+    {% endfor %}
+</div>

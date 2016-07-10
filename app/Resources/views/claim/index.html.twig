@@ -1,0 +1,50 @@
+{% extends 'frontoffice.html.twig' %}
+
+{% block content %}
+    <div class="container">
+        <div class="jumbotron">
+            <h1>My Claims</h1>
+
+            <h2>manage your claims</h2>
+        </div>
+
+    <div class="row">
+    <div class="col-lg-12">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Created At</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for claim in claims %}
+            <tr>
+                <td><a title="{{ claim.title }}" href="{{ path('claim_show', { 'id': claim.id }) }}">{{ claim.id }}</a></td>
+                <td>{{ claim.title }}</td>
+                <td>{{ claim.description }}</td>
+                <td>{% if claim.createdAt %}{{ claim.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a class="btn btn-primary" href="{{ path('claim_show', { 'id': claim.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a class="btn btn-warning" href="{{ path('claim_edit', { 'id': claim.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    </div>
+           <hr>
+            <p class="text-center"><a href="{{ path('claim_new') }}" class="btn btn-default">Create a new entry</a></p>
+
+    </div>
+{% endblock %}
