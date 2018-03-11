@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/BlackListed.iml" filepath="$PROJECT_DIR$/.idea/BlackListed.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/blackListedAPI.iml" filepath="$PROJECT_DIR$/.idea/blackListedAPI.iml" />
     </modules>
   </component>
 </project>
