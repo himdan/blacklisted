@@ -70,6 +70,7 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: AppBundle\Entity\Account
+    from_email : "%mailer_user%"
 fos_rest:
     param_fetcher_listener: true
     body_listener: true
@@ -88,10 +89,4 @@ fos_rest:
     routing_loader:
         default_format: json
 services:
-    api_key_user_provider:
-        class: MobileBundle\Security\ApiKeyUserProvider
-        calls:
-         - [getEntityManager, [doctrine.orm.entity_manager]]
-    apikey_authenticator:
-        class:  MobileBundle\Security\ApiKeyAuthenticator
-        public: false
+
