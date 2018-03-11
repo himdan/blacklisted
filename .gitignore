@@ -1,5 +1,5 @@
 composer.lock
 app/cache/*
-app/config/parametrers.yml
+app/config/parameters.yml
 vendor/*
 .idea/*
