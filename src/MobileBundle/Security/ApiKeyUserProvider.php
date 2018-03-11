@@ -18,8 +18,8 @@ class ApiKeyUserProvider implements UserProviderInterface
     {
         // Look up the username based on the token in the database, via
         // an API call, or do something entirely different
-        $user =$this->getEntityManager()->getRepository('AppBundle:Account')->findBy(array('apiKey'=>$apiKey)) ;
-        
+        $user = $this->getEntityManager()->getRepository('AppBundle:Account')->findBy(array('apiKey' => $apiKey));
+
         return $user->getUsername();
     }
 
@@ -47,8 +47,9 @@ class ApiKeyUserProvider implements UserProviderInterface
     {
         return 'Symfony\Component\Security\Core\User\User' === $class;
     }
+
     public function getEntityManager($entityManager)
-{
-    return $entityManager;
-}
+    {
+        return $entityManager;
+    }
 }

@@ -1,4 +1,8 @@
 services:
-#    mobile.example:
-#        class: MobileBundle\Example
-#        arguments: ["@service_id", "plain_value", %parameter%]
+    api_key_user_provider:
+        class: MobileBundle\Security\ApiKeyUserProvider
+        calls:
+         - [getEntityManager, [doctrine.orm.entity_manager]]
+    apikey_authenticator:
+        class:  MobileBundle\Security\ApiKeyAuthenticator
+        public: false
