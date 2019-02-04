@@ -283,18 +283,10 @@ class Claim
      * @return bool
      */
     public function getIsService(){
-        $category=$this->category;
-        while($category instanceof Category){
-            if($category->getParentCategory() == null){
-                break;
-            }else{
-                $category=$category->getParentCategory();
-            }
-        }
-        return $category->getId()=='2';
+        return $this->isservice;
     }
-    public function setIsService(){
-        $this->isservice=$this->getIsService();
+    public function setIsService($isService =null){
+        $this->isservice= is_null($isService)?false:true;
         return $this;
     }
     public function isOwnedBy(Account $account){

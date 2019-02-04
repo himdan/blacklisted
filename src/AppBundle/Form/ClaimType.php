@@ -18,6 +18,7 @@ class ClaimType extends AbstractType
             ->add('title')
             ->add('description')
             ->add('category')
+            ->add('isService')
             
         ;
     }
@@ -28,7 +29,8 @@ class ClaimType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Claim'
+            'data_class' => 'AppBundle\Entity\Claim',
+            'csrf_protection'   => false
         ));
     }
 }

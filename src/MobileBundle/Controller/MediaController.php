@@ -57,7 +57,7 @@ class MediaController extends FosRestController
      * @return Response
      */
     public function postMediumAction(Claim $claim,Request $request){
-        $medium=new Media();
+        $medium= new Media();
         $medium->setAlternative($request->get('alternative'));
         $medium->setFile($request->files->get('File'));
         $account=$this->getDoctrine()->getRepository('AppBundle:Account')->findOneBy(array('apikey'=>$request->get('apikey')));
