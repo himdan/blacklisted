@@ -77,19 +77,19 @@ class Location
      *
      * @ORM\Column(name="telephone", type="integer")
      */
-      private $telephone;
+    private $telephone;
      /**
      * @var int
      *
      * @ORM\Column(name="mobile", type="integer")
      */
-      private $mobile; 
+    private $mobile;
      /**
      * @var int
      *
      * @ORM\Column(name="fax", type="integer")
      */
-      private $fax; 
+    private $fax;
     /**
      * @var string
      *
@@ -98,13 +98,14 @@ class Location
     private $info;
    
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->resolutions=new ArrayCollection();
     }
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -127,7 +128,7 @@ class Location
     /**
      * Get longitude
      *
-     * @return float 
+     * @return float
      */
     public function getLongitude()
     {
@@ -150,7 +151,7 @@ class Location
     /**
      * Get latitude
      *
-     * @return float 
+     * @return float
      */
     public function getLatitude()
     {
@@ -173,7 +174,7 @@ class Location
     /**
      * Get info
      *
-     * @return string 
+     * @return string
      */
     public function getInfo()
     {
@@ -196,7 +197,7 @@ class Location
     /**
      * Get authority
      *
-     * @return \AppBundle\Entity\Authority 
+     * @return \AppBundle\Entity\Authority
      */
     public function getAuthority()
     {
@@ -219,13 +220,14 @@ class Location
     /**
      * Get firstname
      *
-     * @return string 
+     * @return string
      */
     public function getFirstname()
     {
         return $this->firstname;
     }
-    public function __toString() {
+    public function __toString()
+    {
         return $this->getAuthority()->getName().'-'.$this->getLabel().'-'.$this->getId();
     }
 
@@ -245,7 +247,7 @@ class Location
     /**
      * Get lastname
      *
-     * @return string 
+     * @return string
      */
     public function getLastname()
     {
@@ -268,7 +270,7 @@ class Location
     /**
      * Get label
      *
-     * @return string 
+     * @return string
      */
     public function getLabel()
     {
@@ -291,7 +293,7 @@ class Location
     /**
      * Get address
      *
-     * @return string 
+     * @return string
      */
     public function getAddress()
     {
@@ -314,7 +316,7 @@ class Location
     /**
      * Get telephone
      *
-     * @return integer 
+     * @return integer
      */
     public function getTelephone()
     {
@@ -337,7 +339,7 @@ class Location
     /**
      * Get mobile
      *
-     * @return integer 
+     * @return integer
      */
     public function getMobile()
     {
@@ -360,7 +362,7 @@ class Location
     /**
      * Get fax
      *
-     * @return integer 
+     * @return integer
      */
     public function getFax()
     {
@@ -393,7 +395,7 @@ class Location
     /**
      * Get resolutions
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getResolutions()
     {

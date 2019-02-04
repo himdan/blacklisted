@@ -18,10 +18,10 @@ class ContactType extends AbstractType
             ->add('firstname')
             ->add('lastname')
             ->add('email')
-            ->add('about','choice',array(
-    'choices'   => array('0' => 'other', '1' => 'User Account','2'=>'affilation','3'=>'content'),
-    'required'  => true,
-))
+            ->add('about', 'choice', array(
+        'choices'   => array('0' => 'other', '1' => 'User Account','2'=>'affilation','3'=>'content'),
+        'required'  => true,
+            ))
             ->add('comment')
         ;
     }

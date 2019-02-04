@@ -1,6 +1,7 @@
 <?php
 
 namespace MobileBundle\Controller;
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use FOS\RestBundle\Controller\FOSRestController;
@@ -15,9 +16,10 @@ class MediaController extends FosRestController
 {
 
 
-    public function getMediaAction(){
+    public function getMediaAction()
+    {
         $media=$this->getDoctrine()->getRepository('AppBundle:Media')->findAll();
-        $view=$this->view($media,200)
+        $view=$this->view($media, 200)
                   ->setTemplate('MobileBundle:Media:media.html.twig')
                   ->setTemplateVar('media');
         return $this->handleView($view);
@@ -29,8 +31,9 @@ class MediaController extends FosRestController
      * @ParamConverter("medium", class="AppBundle:Media")
      */
 
-    public function getMediumAction(Media $medium){
-        $view=$this->view($medium,200)
+    public function getMediumAction(Media $medium)
+    {
+        $view=$this->view($medium, 200)
                    ->setTemplate('MobileBundle:Media:medium.html.twig')
                    ->setTemplateVar('medium');
 
@@ -43,7 +46,8 @@ class MediaController extends FosRestController
      * @Method("GET")
      * @return Response
      */
-    public function getMediumContentAction(Media $medium){
+    public function getMediumContentAction(Media $medium)
+    {
 
         $file =    readfile($medium->getAbsolutePath());
         $headers = array(
@@ -56,14 +60,15 @@ class MediaController extends FosRestController
      * @param Request $request
      * @return Response
      */
-    public function postMediumAction(Claim $claim,Request $request){
+    public function postMediumAction(Claim $claim, Request $request)
+    {
         $medium= new Media();
         $medium->setAlternative($request->get('alternative'));
         $medium->setFile($request->files->get('File'));
         $account=$this->getDoctrine()->getRepository('AppBundle:Account')->findOneBy(array('apikey'=>$request->get('apikey')));
         $status=200;
         $message="";
-        if($claim->getAccount()->getId()==$account->getId()){
+        if ($claim->getAccount()->getId()==$account->getId()) {
             $medium->setClaim($claim);
             $medium->upload();
             $em=$this->getDoctrine()->getManager();
@@ -73,11 +78,11 @@ class MediaController extends FosRestController
 
             $message="media created";
             $status=201;
-        }else{
+        } else {
             $message="unauthorized";
             $status=401;
         }
-        $view=$this->view($message,$status,array('Access-Control-Allow-Origin'=>'*'))
+        $view=$this->view($message, $status, array('Access-Control-Allow-Origin'=>'*'))
             ->setTemplate('MobileBundle:Media:create.html.twig')
             ->setTemplateVar('message');
         return $this->handleView($view);

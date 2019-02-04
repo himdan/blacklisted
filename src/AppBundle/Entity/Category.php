@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Entity;
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -56,7 +57,7 @@ class Category
      /**
      * @var UploadedFile $file
      * @Assert\File(maxSize="6000000")
-     * 
+     *
      */
     private $file;
     /**
@@ -66,14 +67,15 @@ class Category
      */
     private $createdat;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->createdat=new \DateTime("now");
         $this->claims=new ArrayCollection();
     }
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -96,7 +98,7 @@ class Category
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -119,7 +121,7 @@ class Category
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -142,13 +144,14 @@ class Category
     /**
      * Get createdat
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedat()
     {
         return $this->createdat;
     }
-    public function __toString() {
+    public function __toString()
+    {
         return $this->getTitle().'-'.$this->getId();
     }
 
@@ -168,7 +171,7 @@ class Category
     /**
      * Get parentCategory
      *
-     * @return \AppBundle\Entity\Category 
+     * @return \AppBundle\Entity\Category
      */
     public function getParentCategory()
     {
@@ -201,7 +204,7 @@ class Category
     /**
      * Get claims
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getClaims()
     {
@@ -224,7 +227,7 @@ class Category
     /**
      * Get image
      *
-     * @return string 
+     * @return string
      */
     public function getImage()
     {
@@ -234,13 +237,12 @@ class Category
      * Set file
      * @param UploadedFile $file
      * @return \AppBundle\Entity\Category
-     * 
+     *
      */
     public function setFile(UploadedFile $file = null)
     {
         $this->file = $file;
         return $this;
-        
     }
     
     /**
@@ -259,7 +261,7 @@ class Category
             : $this->getUploadRootDir().'/'.$this->image;
     }
     /**
-     * 
+     *
      * @return string
      */
 
@@ -287,14 +289,13 @@ class Category
    * @ORM\PostPersist()
    * @ORM\PostUpdate()
    */
-  public function upload()
-  {
-    if (null === $this->file) {
-        return;
+    public function upload()
+    {
+        if (null === $this->file) {
+            return;
+        }
+        $this->setImage(sha1(uniqid(null, true)).'.'.$this->file->getClientOriginalExtension());
+        $this->getFile()->move($this->getUploadRootDir(), $this->image);
+        $this->file = null;
     }
-    $this->setImage(sha1(uniqid(null,true)).'.'.$this->file->getClientOriginalExtension());
-    $this->getFile()->move($this->getUploadRootDir(), $this->image);
-    $this->file = null;
-  }
-    
 }

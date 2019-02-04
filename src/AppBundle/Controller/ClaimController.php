@@ -32,12 +32,12 @@ class ClaimController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $claims = $em->getRepository('AppBundle:Claim')->findBy(array('account'=>$this->getUser()->getId()));
-        if(count($claims)){
-        return $this->render('claim/index.html.twig', array(
+        if (count($claims)) {
+            return $this->render('claim/index.html.twig', array(
             'claims' => $claims,
-        ));
-        }else{
-          return $this->redirectToRoute('claim_new')  ;
+            ));
+        } else {
+            return $this->redirectToRoute('claim_new')  ;
         }
     }
 
@@ -79,14 +79,14 @@ class ClaimController extends Controller
     public function showAction(Claim $claim)
     {
         $user=$this->getUser();
-        if($user->getId()==$claim->getAccount()->getId()) {
+        if ($user->getId()==$claim->getAccount()->getId()) {
             $deleteForm = $this->createDeleteForm($claim);
 
             return $this->render('claim/show.html.twig', array(
                 'claim' => $claim,
                 'delete_form' => $deleteForm->createView(),
             ));
-        }else{
+        } else {
             return $this->redirectToRoute('claim_index');
         }
     }
@@ -101,7 +101,7 @@ class ClaimController extends Controller
     {
         $deleteForm = $this->createDeleteForm($claim);
         $user=$this->getUser();
-        if($user->getId()==$claim->getAccount()->getId()) {
+        if ($user->getId()==$claim->getAccount()->getId()) {
             $editForm = $this->createForm('AppBundle\Form\ClaimType', $claim);
             $editForm->handleRequest($request);
 
@@ -119,9 +119,10 @@ class ClaimController extends Controller
                 'form' => $editForm->createView(),
                 'delete_form' => $deleteForm->createView(),
             ));
-        }else{
+        } else {
             return $this->redirectToRoute('claim_index');
-        }}
+        }
+    }
 
     /**
      * Deletes a Claim entity.
@@ -132,7 +133,7 @@ class ClaimController extends Controller
     public function deleteAction(Request $request, Claim $claim)
     {
         $user=$this->getUser();
-        if($user->getId()==$claim->getAccount()->getId()) {
+        if ($user->getId()==$claim->getAccount()->getId()) {
             $form = $this->createDeleteForm($claim);
             $form->handleRequest($request);
 
@@ -167,9 +168,10 @@ class ClaimController extends Controller
      * @Route("/{id}/addmedium", name="add_medium")
      * @Method({"GET", "POST"})
      */
-    public function addMediumAction(Claim $claim,Request $request){
+    public function addMediumAction(Claim $claim, Request $request)
+    {
         $user=$this->getUser();
-        if($user->getId()==$claim->getAccount()->getId()) {
+        if ($user->getId()==$claim->getAccount()->getId()) {
             $medium = new Media();
             $mediumForm = $this->createForm('AppBundle\Form\MediaType', $medium);
             $mediumForm->handleRequest($request);
@@ -181,13 +183,13 @@ class ClaimController extends Controller
                 $em->flush();
                 $claim->addMedia($medium);
                 return $this->redirectToRoute('claim_show', array('id' => $claim->getId()));
-            }else{
-            return $this->render('claim/addmedia.html.twig', array(
+            } else {
+                return $this->render('claim/addmedia.html.twig', array(
                 'claim' => $claim,
                 'form' => $mediumForm->createView(),
-            ));
+                ));
             }
-        }else{
+        } else {
             return $this->redirectToRoute('claim_index');
         }
     }
@@ -199,29 +201,28 @@ class ClaimController extends Controller
      * @Method({"GET", "POST"})
      * @return Response
      */
-    public  function addLocation(Claim $claim ,Request $request){
+    public function addLocation(Claim $claim, Request $request)
+    {
         $user=$this->getUser();
-        if($claim->isOwnedBy($user)){
+        if ($claim->isOwnedBy($user)) {
             $location=new ServiceLocation();
-            $locationForm=$this->createForm('AppBundle\Form\ServiceLocationType',$location);
+            $locationForm=$this->createForm('AppBundle\Form\ServiceLocationType', $location);
             $locationForm->handleRequest($request);
-            if($locationForm->isSubmitted()&&$locationForm->isValid()){
+            if ($locationForm->isSubmitted()&&$locationForm->isValid()) {
                 $location->setClaim($claim);
                 $em=$this->getDoctrine()->getManager();
                 $em->persist($location);
                 $em->flush();
                 $claim->setLocation($location);
                 return $this->redirectToRoute('claim_show', array('id' => $claim->getId()));
-            }else{
-
+            } else {
                 return $this->render('claim/setlocation.html.twig', array(
                     'claim' => $claim,
                     'form' => $locationForm->createView(),
                 ));
             }
-        }else{
+        } else {
             return $this->redirectToRoute('claim_index');
         }
-
     }
 }

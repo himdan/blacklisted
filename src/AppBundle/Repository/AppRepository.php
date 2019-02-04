@@ -8,16 +8,14 @@
 
 namespace AppBundle\Repository;
 
-
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 
 abstract class AppRepository extends EntityRepository
 {
 
-    public function search($data=[],$orderSet=[],$paginationSet=[])
+    public function search($data = [], $orderSet = [], $paginationSet = [])
     {
-
     }
 
     /**
@@ -26,6 +24,5 @@ abstract class AppRepository extends EntityRepository
     protected function getQueryBuilder()
     {
         $qb = $this->createQueryBuilder();
-
     }
 }

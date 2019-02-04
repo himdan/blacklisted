@@ -12,12 +12,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class ClaimRepository extends EntityRepository
 {
-    public function findRecent($max){
+    public function findRecent($max)
+    {
          return $this->createQueryBuilder('c')
-                 ->orderBy('c.createdAt','DESC')
+                 ->orderBy('c.createdAt', 'DESC')
                  ->getQuery()
-                 ->setMaxResults($max)    
+                 ->setMaxResults($max)
                  ->getResult();
-        
     }
 }

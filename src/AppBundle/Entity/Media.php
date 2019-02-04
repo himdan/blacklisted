@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+
 /**
  * Media
  *
@@ -67,20 +68,21 @@ class Media
     /**
      * @var UploadedFile $file
      * @Assert\File(maxSize="6000000")
-     * 
+     *
      */
     private $file;
 
     /**
      * Media constructor.
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->createdAt=new \DateTime("now");
     }
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -103,7 +105,7 @@ class Media
     /**
      * Get type
      *
-     * @return string 
+     * @return string
      */
     public function getType()
     {
@@ -126,7 +128,7 @@ class Media
     /**
      * Get extension
      *
-     * @return string 
+     * @return string
      */
     public function getExtension()
     {
@@ -149,7 +151,7 @@ class Media
     /**
      * Get path
      *
-     * @return string 
+     * @return string
      */
     public function getPath()
     {
@@ -172,7 +174,7 @@ class Media
     /**
      * Get alternative
      *
-     * @return string 
+     * @return string
      */
     public function getAlternative()
     {
@@ -195,7 +197,7 @@ class Media
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -218,7 +220,7 @@ class Media
     /**
      * Get claim
      *
-     * @return \AppBundle\Entity\Claim 
+     * @return \AppBundle\Entity\Claim
      */
     public function getClaim()
     {
@@ -228,14 +230,13 @@ class Media
      * Set file
      * @param UploadedFile $file
      * @return \AppBundle\Entity\Media
-     * 
+     *
      */
     public function setFile(UploadedFile $file = null)
     {
         $this->file = $file;
         $this->extension=$file->getExtension();
         return $this;
-        
     }
     
     /**
@@ -254,7 +255,7 @@ class Media
             : $this->getUploadRootDir().'/'.$this->path;
     }
     /**
-     * 
+     *
      * @return string
      */
 
@@ -282,20 +283,20 @@ class Media
    * @ORM\PostPersist()
    * @ORM\PostUpdate()
    */
-  public function upload()
-  {
-    if (null === $this->file) {
-        return;
-    }
+    public function upload()
+    {
+        if (null === $this->file) {
+            return;
+        }
     
-    $this->setExtension($this->file->getClientOriginalExtension());
-    $this->setPath(sha1(uniqid(null,true)).'.'.$this->getExtension());
-    $this->setType($this->file->getClientMimeType());
-    $this->getFile()->move($this->getUploadRootDir(), $this->path);
-    $this->file = null;
-  }
-    public function __toString() {
+        $this->setExtension($this->file->getClientOriginalExtension());
+        $this->setPath(sha1(uniqid(null, true)).'.'.$this->getExtension());
+        $this->setType($this->file->getClientMimeType());
+        $this->getFile()->move($this->getUploadRootDir(), $this->path);
+        $this->file = null;
+    }
+    public function __toString()
+    {
         return $this->getAlternative().'-'.$this->getId();
     }
-    
 }

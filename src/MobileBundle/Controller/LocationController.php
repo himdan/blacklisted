@@ -7,6 +7,7 @@
  */
 
 namespace MobileBundle\Controller;
+
 use FOS\RestBundle\Controller\FOSRestController;
 use AppBundle\Entity\Claim;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -20,14 +21,16 @@ use AppBundle\Entity\ServiceLocation;
  *
  * @author acer1
  */
-class LocationController extends FosRestController {
+class LocationController extends FosRestController
+{
     //put your code here
     /**
      * @param Claim $claim
      * @param Request $request
      * @return Response
      */
-    public function postLocationAction(Claim $claim,Request $request){
+    public function postLocationAction(Claim $claim, Request $request)
+    {
         $location=new ServiceLocation();
         $location->setAddress($request->get('address'));
         $location->setDescription($request->get('description'));
@@ -36,7 +39,7 @@ class LocationController extends FosRestController {
         $account=$this->getDoctrine()->getRepository('AppBundle:Account')->findOneBy(array('apikey'=>$request->get('apikey')));
         $status=200;
         $message="";
-        if($claim->getAccount()->getId()==$account->getId()){
+        if ($claim->getAccount()->getId()==$account->getId()) {
             $location->setClaim($claim);
          
             $em=$this->getDoctrine()->getManager();
@@ -46,14 +49,13 @@ class LocationController extends FosRestController {
 
             $message="location created";
             $status=201;
-        }else{
+        } else {
             $message="unauthorized";
             $status=401;
         }
-        $view=$this->view($message,$status,array('Access-Control-Allow-Origin'=>'*'))
+        $view=$this->view($message, $status, array('Access-Control-Allow-Origin'=>'*'))
             ->setTemplate('MobileBundle:ServiceLocation:create.html.twig')
             ->setTemplateVar('message');
         return $this->handleView($view);
     }
-   
 }

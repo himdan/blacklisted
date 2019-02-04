@@ -2,7 +2,6 @@
 
 namespace MobileBundle\Controller;
 
-
 use FOS\RestBundle\Controller\FOSRestController;
 use AppBundle\Entity\Category;
 use AppBundle\Entity\Claim;
@@ -16,7 +15,7 @@ class ClaimController extends FosRestController
     public function getClaimsAction()
     {
         $claims=$this->getDoctrine()->getRepository('AppBundle:Claim')->findAll();
-        $view=$this->view($claims,200)
+        $view=$this->view($claims, 200)
                    ->setTemplate('MobileBundle:Claims:claims.html.twig')
                    ->setTemplateVar('claims') ;
         return $this->handleView($view);
@@ -25,7 +24,7 @@ class ClaimController extends FosRestController
     {
         $user=$this->getDoctrine()->getRepository('AppBundle:Account')->findBy(array('apikey'=>$request->get('apikey')));
         $claims=$this->getDoctrine()->getRepository('AppBundle:Claim')->findBy(array('account'=>$user));
-        $view=$this->view($claims,200,array('Access-Control-Allow-Origin'=>'*'))
+        $view=$this->view($claims, 200, array('Access-Control-Allow-Origin'=>'*'))
                    ->setTemplate('MobileBundle:Claims:claims.html.twig')
                    ->setTemplateVar('claims') ;
         return $this->handleView($view);
@@ -36,12 +35,12 @@ class ClaimController extends FosRestController
      * @View()
      * @ParamConverter("claim", class="AppBundle:Claim")
      */
-    public function getClaimAction(Claim $claim){
-        $view=$this->view($claim,200,array('Access-Control-Allow-Origin'=>'*'))
+    public function getClaimAction(Claim $claim)
+    {
+        $view=$this->view($claim, 200, array('Access-Control-Allow-Origin'=>'*'))
                    ->setTemplate('MobileBundle:Claims:claim.html.twig')
                    ->setTemplateVar('claim');
         return $this->handleView($view);
-
     }
     /**
      * @param Category $category
@@ -49,9 +48,10 @@ class ClaimController extends FosRestController
      * @View()
      * @ParamConverter("category", class="AppBundle:Category")
      */
-    public function getClaimByCategoryAction(Category $category){
+    public function getClaimByCategoryAction(Category $category)
+    {
         $claims=$this->getDoctrine()->getRepository('AppBundle:Claim')->findBy(array('category'=>$category));
-        $view=$this->view($claims,200)
+        $view=$this->view($claims, 200)
             ->setTemplate('MobileBundle:Claims:claimsByCategory.html.twig')
             ->setTemplateVar('claims');
         return $this->handleView($view);
@@ -61,15 +61,16 @@ class ClaimController extends FosRestController
      * @param Request $request
      * @return Response
      */
-    public function postNewClaimAction(Request $request){
+    public function postNewClaimAction(Request $request)
+    {
         $account=$this->getDoctrine()->getRepository('AppBundle:Account')->findOneBy(array('apikey'=>$request->get('apikey')));
         
         $claim=new Claim();
         $category=$this->getDoctrine()->getRepository('AppBundle:Category')->findOneBy(array('id'=>$request->get('category')));
 
-         if($account instanceof Account ){
-           $claim->setAccount($account) ;
-            if($category instanceof Category){
+        if ($account instanceof Account) {
+            $claim->setAccount($account) ;
+            if ($category instanceof Category) {
                 $claim->setCategory($category);
                 $claim->setTitle($request->get('title'));
                 $claim->setDescription($request->get('description'));
@@ -79,15 +80,15 @@ class ClaimController extends FosRestController
                 $em->flush();
                 $message=$claim;
                 $status=201;
-            }else{
-              $message='category not found' ;
-              $status=404;
+            } else {
+                $message='category not found' ;
+                $status=404;
             }
-        }else{
-          $message='unauthorized You must login' ;
-          $status=401;
+        } else {
+            $message='unauthorized You must login' ;
+            $status=401;
         }
-        $view=$this->view($message,$status,array('Access-Control-Allow-Origin'=>'*'))
+        $view=$this->view($message, $status, array('Access-Control-Allow-Origin'=>'*'))
             ->setTemplate('MobileBundle:Claims:create.html.twig')
             ->setTemplateVar('message');
          return $this->handleView($view);
@@ -96,15 +97,16 @@ class ClaimController extends FosRestController
      * @param Request $request
      * @return Response
      */
-    public function postUpdateClaimAction(Request $request){
+    public function postUpdateClaimAction(Request $request)
+    {
         $account=$this->getDoctrine()->getRepository('AppBundle:Account')->findoneBy(array('apikey'=>$request->get('apikey')));
         
         $claim=$this->getDoctrine()->getRepository('AppBundle:Claim')->findOneBy(array('id'=>$request->get('id')));
         $category=$this->getDoctrine()->getRepository('AppBundle:Category')->findOneBy(array('id'=>$request->get('category')));
 
-         if($account instanceof Account ){
-           $claim->setAccount($account) ;
-            if($category instanceof Category){
+        if ($account instanceof Account) {
+            $claim->setAccount($account) ;
+            if ($category instanceof Category) {
                 $claim->setCategory($category);
                 $claim->setTitle($request->get('title'));
                 $claim->setDescription($request->get('description'));
@@ -113,15 +115,15 @@ class ClaimController extends FosRestController
                 $em->flush();
                 $message=" new claim created";
                 $status=201;
-            }else{
-              $message='category not found' ;
-              $status=404;
+            } else {
+                $message='category not found' ;
+                $status=404;
             }
-        }else{
-          $message='unauthorized You must login' ;
-          $status=401;
+        } else {
+            $message='unauthorized You must login' ;
+            $status=401;
         }
-        $view=$this->view($message,$status,array('Access-Control-Allow-Origin'=>'*'))
+        $view=$this->view($message, $status, array('Access-Control-Allow-Origin'=>'*'))
             ->setTemplate('MobileBundle:Claims:create.html.twig')
             ->setTemplateVar('message');
          return $this->handleView($view);

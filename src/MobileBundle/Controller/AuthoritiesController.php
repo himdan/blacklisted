@@ -13,6 +13,7 @@ namespace MobileBundle\Controller;
  *
  * @author acer1
  */
-class AuthoritiesController {
+class AuthoritiesController
+{
     //put your code here
 }

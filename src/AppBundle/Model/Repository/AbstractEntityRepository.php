@@ -36,7 +36,7 @@ abstract class AbstractEntityRepository extends EntityRepository implements ISea
      * @param bool $countOnly
      * @return mixed
      */
-    abstract protected function populateQb(Builder $qb, $data, $countOnly=false);
+    abstract protected function populateQb(Builder $qb, $data, $countOnly = false);
     /**
      * @param array $data
      * @param $sortColumn

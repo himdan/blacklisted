@@ -18,7 +18,7 @@ class AuthorityType extends AbstractType
             ->add('name')
             ->add('context')
             ->add('hqAdress')
-            ->add('phone')    
+            ->add('phone')
             ->add('description')
             ->add('url')
             ->add('email')

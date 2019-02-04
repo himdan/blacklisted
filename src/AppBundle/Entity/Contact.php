@@ -44,7 +44,7 @@ class Contact
      *      max = 50,
      *      minMessage = "Your last name must be at least {{ limit }} characters long",
      *      maxMessage = "Your last name cannot be longer than {{ limit }} characters"
-     * ) 
+     * )
      */
     private $lastname;
 
@@ -83,13 +83,14 @@ class Contact
      * @ORM\Column(name="createdat", type="datetime")
      */
     private $createdAt;
-    public function __construct() {
+    public function __construct()
+    {
         $this->createdAt=new \DateTime("now");
     }
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -112,7 +113,7 @@ class Contact
     /**
      * Get firstname
      *
-     * @return string 
+     * @return string
      */
     public function getFirstname()
     {
@@ -135,7 +136,7 @@ class Contact
     /**
      * Get lastname
      *
-     * @return string 
+     * @return string
      */
     public function getLastname()
     {
@@ -158,7 +159,7 @@ class Contact
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -181,7 +182,7 @@ class Contact
     /**
      * Get about
      *
-     * @return integer 
+     * @return integer
      */
     public function getAbout()
     {
@@ -204,7 +205,7 @@ class Contact
     /**
      * Get comment
      *
-     * @return string 
+     * @return string
      */
     public function getComment()
     {
@@ -227,7 +228,7 @@ class Contact
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {

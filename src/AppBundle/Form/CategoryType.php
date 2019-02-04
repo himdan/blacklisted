@@ -18,7 +18,7 @@ class CategoryType extends AbstractType
             ->add('title')
             ->add('description')
             ->add('parentCategory')
-            ->add('file','file');    
+            ->add('file', 'file');
         ;
     }
     

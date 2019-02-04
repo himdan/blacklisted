@@ -8,7 +8,6 @@
 
 namespace AppBundle\Tests\Service;
 
-
 use AppBundle\Entity\Category;
 use AppBundle\Entity\Claim;
 use AppBundle\Exception\ValidationException;
@@ -17,17 +16,17 @@ use AppBundle\Service\CrudService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-class crudServiceTest extends  KernelTestCase
+class crudServiceTest extends KernelTestCase
 {
 
     /**
      * @var CrudService $crudService
      */
-    protected  $crudService;
+    protected $crudService;
     /**
      * @var EntityManagerInterface $entityManager
      */
-    protected  $entityManager;
+    protected $entityManager;
     protected function setUp()
     {
         self::bootKernel();
@@ -41,7 +40,8 @@ class crudServiceTest extends  KernelTestCase
     }
 
 
-    public function testCreate(){
+    public function testCreate()
+    {
         $categoryRepository = $this->entityManager->getRepository(Category::class);
         $category = $categoryRepository->findOneBy(['id'=>1]);
         $data = array(
@@ -53,11 +53,10 @@ class crudServiceTest extends  KernelTestCase
         $this->crudService
             ->setEntity(Claim::class)
             ->setType(ClaimType::class)
-            ->create($data, function($claim){
+            ->create($data, function ($claim) {
                 $this->assertNotNull($claim->getId());
-            }, function ($e){
+            }, function ($e) {
                 $this->assertNull($e->getMessage());
             });
     }
-
 }

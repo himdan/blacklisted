@@ -159,6 +159,4 @@ abstract class AbstractDocumentRepository extends DocumentRepository implements 
         }
         return $ids;
     }
-
-
 }

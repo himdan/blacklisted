@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Entity;
+
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -39,9 +40,10 @@ class Account extends BaseUser
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
         $this->claims=new ArrayCollection();
         $this->apikey=md5(uniqid(null, true));
@@ -51,12 +53,12 @@ class Account extends BaseUser
         return $this->id;
     }
     /**
-     * 
+     *
      * @return string
      */
-    public function getApiKey(){
+    public function getApiKey()
+    {
         return $this->apikey;
-        
     }
     /**
      * Add claims
@@ -84,13 +86,14 @@ class Account extends BaseUser
     /**
      * Get claims
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getClaims()
     {
         return $this->claims;
     }
-    public function __toString() {
+    public function __toString()
+    {
             return $this->getUsername();
     }
 

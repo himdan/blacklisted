@@ -8,17 +8,16 @@
 
 namespace AppBundle\Exception;
 
-
-class ValidationException extends  \Exception
+class ValidationException extends \Exception
 {
 
-    protected  $errors = [];
-    protected  $message = 'failed to insure validation constraint';
+    protected $errors = [];
+    protected $message = 'failed to insure validation constraint';
 
     /**
      * @var \Iterator $errorIterator
      */
-    protected  $errorIterator;
+    protected $errorIterator;
 
     /**
      * validationException constructor.
@@ -66,7 +65,4 @@ class ValidationException extends  \Exception
         $this->errors = $errors;
         return $this;
     }
-
-
-
 }

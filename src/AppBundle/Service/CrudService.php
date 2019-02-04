@@ -8,7 +8,6 @@
 
 namespace AppBundle\Service;
 
-
 use AppBundle\Exception\ValidationException;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -68,12 +67,11 @@ class CrudService
      * @param $successCallbackFn
      * @param $errorCallbackFn
      */
-    public function create($data,$successCallbackFn, $errorCallbackFn)
+    public function create($data, $successCallbackFn, $errorCallbackFn)
     {
         $instance = new $this->entity;
         $form = $this->formFactory->create($this->type, $instance);
         $this->createOrUpdate($form, $instance, $successCallbackFn, $errorCallbackFn, $data);
-
     }
 
     /**
@@ -91,11 +89,15 @@ class CrudService
 
     public function delete($instance, $successCallback, $errorCallbackFn)
     {
-        try{
+        try {
             $this->em->remove($instance);
-            if(is_callable($successCallback)) $successCallback();
-        } catch (\Exception $e){
-            if(is_callable($errorCallbackFn)) $errorCallbackFn($e);
+            if (is_callable($successCallback)) {
+                $successCallback();
+            }
+        } catch (\Exception $e) {
+            if (is_callable($errorCallbackFn)) {
+                $errorCallbackFn($e);
+            }
         }
     }
 
@@ -107,21 +109,23 @@ class CrudService
      * @param $data
      * @param bool $clearMissing
      */
-    private function createOrUpdate(FormInterface $form, $instance, $successCallbackFn, $errorCallbackFn, $data, $clearMissing=false)
+    private function createOrUpdate(FormInterface $form, $instance, $successCallbackFn, $errorCallbackFn, $data, $clearMissing = false)
     {
-        try{
+        try {
             $form->submit($data, $clearMissing);
-            if($form->isValid()) {
+            if ($form->isValid()) {
                 $this->em->persist($instance);
                 $this->em->flush();
-                if(is_callable($successCallbackFn)) $successCallbackFn($instance);
+                if (is_callable($successCallbackFn)) {
+                    $successCallbackFn($instance);
+                }
             } else {
                 throw new ValidationException($form->getErrors());
             }
         } catch (\Exception $e) {
-            if(is_callable($errorCallbackFn)) $errorCallbackFn($e);
+            if (is_callable($errorCallbackFn)) {
+                $errorCallbackFn($e);
+            }
         }
     }
-
-
 }

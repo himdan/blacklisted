@@ -14,27 +14,29 @@ class DefaultControllerTest extends WebTestCase
 
         $this->assertContains('something', $client->getResponse()->getContent());
     }
-    public function testContact(){
+    public function testContact()
+    {
 
         $client=static::createClient();
-        $crawler=$client->request('GET','/contact');
+        $crawler=$client->request('GET', '/contact');
         $this->assertContains('contact', $client->getResponse()->getContent());
-
     }
-    public function testAboutUs(){
+    public function testAboutUs()
+    {
         $client=static::createClient();
-        $crawler=$client->request('GET','/aboutus');
+        $crawler=$client->request('GET', '/aboutus');
         $this->assertContains('Our Team', $client->getResponse()->getContent());
-
     }
-    public function testShowClaim(){
+    public function testShowClaim()
+    {
         $client=static::createClient();
-        $crawler=$client->request('GET','/claim/15/view');
+        $crawler=$client->request('GET', '/claim/15/view');
         $this->assertContains('Hello World', $client->getResponse()->getContent());
     }
-    public function testShowCategory(){
+    public function testShowCategory()
+    {
         $client=static::createClient();
-        $crawler=$client->request('GET','/category/1/view');
+        $crawler=$client->request('GET', '/category/1/view');
         $this->assertContains('Hello World', $client->getResponse()->getContent());
     }
 }

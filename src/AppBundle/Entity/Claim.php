@@ -81,7 +81,8 @@ class Claim
      */
     private $createdAt;
     
-    public function __construct(){
+    public function __construct()
+    {
         $this->createdAt=new \DateTime("now");
         $this->medias=new ArrayCollection();
         $this->resolutions=new ArrayCollection();
@@ -91,7 +92,7 @@ class Claim
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -114,7 +115,7 @@ class Claim
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -137,7 +138,7 @@ class Claim
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -160,7 +161,7 @@ class Claim
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -183,7 +184,7 @@ class Claim
     /**
      * Get category
      *
-     * @return \AppBundle\Entity\Category 
+     * @return \AppBundle\Entity\Category
      */
     public function getCategory()
     {
@@ -206,7 +207,7 @@ class Claim
     /**
      * Get account
      *
-     * @return \AppBundle\Entity\Account 
+     * @return \AppBundle\Entity\Account
      */
     public function getAccount()
     {
@@ -239,7 +240,7 @@ class Claim
     /**
      * Get medias
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getMedias()
     {
@@ -272,7 +273,7 @@ class Claim
     /**
      * Get resolutions
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getResolutions()
     {
@@ -282,22 +283,29 @@ class Claim
     /**
      * @return bool
      */
-    public function getIsService(){
+    public function getIsService()
+    {
         return $this->isservice;
     }
-    public function setIsService($isService =null){
+    public function setIsService($isService = null)
+    {
         $this->isservice= is_null($isService)?false:true;
         return $this;
     }
-    public function isOwnedBy(Account $account){
-        if($this->account instanceof Account){
+    public function isOwnedBy(Account $account)
+    {
+        if ($this->account instanceof Account) {
             return $this->account->getId()==$account->getId();
-        }else{return false;}
+        } else {
+            return false;
+        }
     }
-    public function isLocated(){
+    public function isLocated()
+    {
         return $this->location instanceof ServiceLocation;
     }
-    public function __toString() {
+    public function __toString()
+    {
         return $this->getTitle().'-'.$this->getId();
     }
 
@@ -317,7 +325,7 @@ class Claim
     /**
      * Get location
      *
-     * @return \AppBundle\Entity\ServiceLocation 
+     * @return \AppBundle\Entity\ServiceLocation
      */
     public function getLocation()
     {

@@ -59,13 +59,14 @@ class Resolution
      */
     private $solvedAt;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->createdAt=new \DateTime("now");
     }
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -88,7 +89,7 @@ class Resolution
     /**
      * Get status
      *
-     * @return integer 
+     * @return integer
      */
     public function getStatus()
     {
@@ -111,7 +112,7 @@ class Resolution
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -134,7 +135,7 @@ class Resolution
     /**
      * Get solvedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getSolvedAt()
     {
@@ -160,13 +161,14 @@ class Resolution
     /**
      * Get claim
      *
-     * @return \AppBundle\Entity\Claim 
+     * @return \AppBundle\Entity\Claim
      */
     public function getClaim()
     {
         return $this->claim;
     }
-    public function __toString(){
+    public function __toString()
+    {
         return $this->getId();
     }
 
@@ -186,7 +188,7 @@ class Resolution
     /**
      * Get location
      *
-     * @return \AppBundle\Entity\Location 
+     * @return \AppBundle\Entity\Location
      */
     public function getLocation()
     {

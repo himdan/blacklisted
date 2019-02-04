@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * Authority
  *
@@ -76,15 +77,15 @@ class Authority
      */
     private $email;
     
-    public function __construct() {
+    public function __construct()
+    {
         $this->locations=new ArrayCollection();
-        
     }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -107,7 +108,7 @@ class Authority
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -130,7 +131,7 @@ class Authority
     /**
      * Get context
      *
-     * @return integer 
+     * @return integer
      */
     public function getContext()
     {
@@ -153,7 +154,7 @@ class Authority
     /**
      * Get hqAdress
      *
-     * @return string 
+     * @return string
      */
     public function getHqAdress()
     {
@@ -176,7 +177,7 @@ class Authority
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -199,7 +200,7 @@ class Authority
     /**
      * Get url
      *
-     * @return string 
+     * @return string
      */
     public function getUrl()
     {
@@ -222,7 +223,7 @@ class Authority
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -255,7 +256,7 @@ class Authority
     /**
      * Get locations
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getLocations()
     {
@@ -267,7 +268,8 @@ class Authority
    
 
    
-    public function __toString() {
+    public function __toString()
+    {
             return $this->getName().'-'.$this->getId()  ;
     }
 
@@ -287,7 +289,7 @@ class Authority
     /**
      * Get phone
      *
-     * @return integer 
+     * @return integer
      */
     public function getPhone()
     {

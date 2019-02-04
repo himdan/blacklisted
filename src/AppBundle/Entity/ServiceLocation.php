@@ -58,7 +58,7 @@ class ServiceLocation
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -81,7 +81,7 @@ class ServiceLocation
     /**
      * Get longtitude
      *
-     * @return float 
+     * @return float
      */
     public function getLongtitude()
     {
@@ -104,7 +104,7 @@ class ServiceLocation
     /**
      * Get latitude
      *
-     * @return float 
+     * @return float
      */
     public function getLatitude()
     {
@@ -127,7 +127,7 @@ class ServiceLocation
     /**
      * Get address
      *
-     * @return string 
+     * @return string
      */
     public function getAddress()
     {
@@ -150,7 +150,7 @@ class ServiceLocation
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -173,7 +173,7 @@ class ServiceLocation
     /**
      * Get claim
      *
-     * @return \AppBundle\Entity\Claim 
+     * @return \AppBundle\Entity\Claim
      */
     public function getClaim()
     {
