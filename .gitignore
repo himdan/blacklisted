@@ -1,0 +1,7 @@
+./composer.lock
+./app/bootstrap.php.cache
+./app/cache/*
+./app/config/parameters.yml
+./vendor/*
+./.idea/*
+./web/upload/*

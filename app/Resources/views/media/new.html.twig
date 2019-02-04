@@ -1,0 +1,20 @@
+{% extends 'frontoffice.html.twig' %}
+
+{% block content %}
+    <div class="container">
+    <h1>Media creation</h1>
+    <div class="row">
+    <div class="col-sm-12">  
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="Create" />
+    {{ form_end(form) }}
+    </div>
+    </div>
+    <ul>
+        <li>
+            <a href="{{ path('media_index') }}">Back to the list</a>
+        </li>
+    </ul>
+    </div>       
+{% endblock %}

@@ -1,0 +1,129 @@
+{% extends 'frontoffice.html.twig' %}
+{% block title %}{{ claim.title }}{% endblock %}
+{% block headJs %}
+    {% if claim.located== true %}
+    <script src="http://maps.googleapis.com/maps/api/js">
+    </script>
+
+
+    <script>
+
+        var myCenter=new google.maps.LatLng({{ claim.location.latitude }},{{ claim.location.longtitude }});
+        var marker;
+
+        function initialize()
+        {
+            var mapProp = {
+                center:myCenter,
+                zoom:5,
+                mapTypeId:google.maps.MapTypeId.ROADMAP
+            };
+
+            var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+            var marker=new google.maps.Marker({
+                position:myCenter,
+                animation:google.maps.Animation.BOUNCE
+            });
+            var infowindow = new google.maps.InfoWindow({
+                content: 'Adresss: ' + '{{ claim.location.address }}' + '<br>Description: ' + '{{ claim.location.description }}'
+            });
+            infowindow.open(map,marker)
+            marker.setMap(map);
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+{% endif %}
+{% endblock %}
+{% block content %}
+    <div class="container">
+    <div class="jumbotron">
+    <h1>Claim Details</h1>
+    </div>
+      <div class="row">
+    <div class="col-sm-2">
+
+                            <a href="{{ path('claim_edit', { 'id': claim.id }) }}" class="btn btn-default">Edit</a><br>
+
+                            <a href="{{ path('claim_index') }}" class="btn btn-default"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>back to the claim list</a>
+
+                            {{ form_start(delete_form) }}
+                            <input type="submit" value="Delete" class="btn btn-default">
+                            {{ form_end(delete_form) }}
+
+    </div>
+    <div class="col-sm-6">
+    <table class="table">
+        <tbody>
+
+            <tr>
+                <th>Id</th>
+                <td>{{ claim.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ claim.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ claim.description }}</td>
+            </tr>
+            <tr>
+                <th>Created At</th>
+                <td>{% if claim.createdAt %}{{ claim.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            
+        </tbody>
+    </table>
+    </div>
+    </div>
+        {% if claim.isService %}
+            <h2>Location</h2>
+            <div class="row" >
+                {% if claim.located!= true %}
+                <div class="col-sm-3">
+                    <h5>add new location</h5>
+                    <span>&nbsp;&nbsp;</span>
+                    <a title="add new location" class="btn-link" href="{{ path('set_location',{ 'id': claim.id }) }}"><img class="img-responsive" src="{{ asset('images/blacklisted/location.png') }}"></a>
+                </div>
+                    {% else %}
+                        <div class="col-sm-6">
+                         <h5>google map</h5>
+                            <div id="googleMap" style="width:550px;height:380px;">
+
+                            </div>
+                        </div>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        <h2>Media List</h2>
+
+        <div class="row">
+        {% for medium in claim.medias %}
+            {% if claim.medias|length >12%}
+                <div class="col-sm-1">
+                {% else %}
+                <div class="col-sm-2">        
+            {% endif %}
+                <h5>{{ medium.alternative }}</h5>
+                <span>{{ medium.createdat|date('Y-m-d H:i:s')  }}</span>
+                <a href="{{path('media_show',{'id': medium.id }) }}" title="">
+                    <img  class="img-responsive" src="{{ asset(medium.webpath) }}" alt="{{ medium.alternative }}" title="{{ medium.alternative }}"/>
+                </a>
+                    
+                    </div>
+                {% endfor%}
+
+
+                <div class="col-sm-3">
+                    <h5>add new medium</h5>
+                    <span>&nbsp;&nbsp;</span>
+                    <a title="add new medium" class="btn-link" href="{{ path('add_medium', { 'id': claim.id }) }}"><img class="img-responsive" src="{{ asset('images/blacklisted/add.png') }}"></a>
+                </div>
+
+                </div>
+    </div>
+{% endblock %}

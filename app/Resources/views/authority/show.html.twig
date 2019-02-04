@@ -1,0 +1,62 @@
+{% extends 'frontoffice.html.twig' %}
+
+{% block content %}
+   <div class="container">
+        <div class="jumbotron">
+            <h1>Authority</h1>
+
+            <h2>Show Authority</h2>
+        </div>
+
+    <div class="row">
+    <div class="col-lg-12">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ authority.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ authority.name }}</td>
+            </tr>
+            <tr>
+                <th>Context</th>
+                <td>{{ authority.context }}</td>
+            </tr>
+            <tr>
+                <th>HQ address</th>
+                <td>{{ authority.hqAdress }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ authority.description }}</td>
+            </tr>
+            <tr>
+                <th>Url</th>
+                <td>{{ authority.url }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ authority.email }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul class="list-unstyled">
+        <li>
+            <a class="btn btn-default" href="{{ path('authority_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a class="btn btn-default" href="{{ path('authority_edit', { 'id': authority.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input class="btn btn-danger" type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+    </div>
+    </div>
+   </div>
+{% endblock %}

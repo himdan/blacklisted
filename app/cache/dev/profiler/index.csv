@@ -1,0 +1,12 @@
+411477,127.0.0.1,GET,http://127.0.0.1:8080/app_dev.php/claim/,1549275528,,200
+9e8244,127.0.0.1,GET,http://127.0.0.1:8080/app_dev.php/claim/new,1549281947,,302
+bb7b8e,127.0.0.1,GET,http://127.0.0.1:8080/app_dev.php/login,1549281947,,200
+2609d3,127.0.0.1,POST,http://127.0.0.1:8080/app_dev.php/login_check,1549281974,,302
+c7d36a,127.0.0.1,GET,http://127.0.0.1:8080/app_dev.php/claim/new,1549281974,,200
+171fcf,127.0.0.1,GET,http://127.0.0.1:8080/app_dev.php/claim/,1549282437,,200
+28023e,127.0.0.1,GET,http://127.0.0.1:8080/app_dev.php/claim/,1549282441,,200
+382302,127.0.0.1,GET,http://127.0.0.1:8080/app_dev.php/claim/,1549282446,,200
+080670,127.0.0.1,GET,http://127.0.0.1:8080/app_dev.php/claim/,1549282472,,200
+7f1c1f,127.0.0.1,GET,http://127.0.0.1:8080/app_dev.php/claim/,1549282475,,200
+aa2eb6,127.0.0.1,GET,http://127.0.0.1:8080/app_dev.php/claim/,1549282499,,200
+aceed3,127.0.0.1,GET,http://127.0.0.1:8080/app_dev.php/claim/,1549282546,,200

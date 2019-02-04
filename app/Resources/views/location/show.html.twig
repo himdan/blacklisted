@@ -1,0 +1,120 @@
+{% extends 'frontoffice.html.twig' %}
+{% block stylesheets %}
+    <style>
+        #googleMap { height: 300px }
+    </style>
+{% endblock %}
+{% block headJs %}
+    
+    <script src="http://maps.googleapis.com/maps/api/js">
+    </script>
+
+
+    <script>
+
+        var myCenter=new google.maps.LatLng({{ location.latitude }},{{ location.longitude }});
+        var marker;
+
+        function initialize()
+        {
+            var mapProp = {
+                center:myCenter,
+                zoom:15,
+                mapTypeId:google.maps.MapTypeId.ROADMAP
+            };
+
+            var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+            var marker=new google.maps.Marker({
+                position:myCenter,
+                animation:google.maps.Animation.BOUNCE
+            });
+            var infowindow = new google.maps.InfoWindow({
+                content: 'Adresss: ' + '{{location.address }}' + '<br>Contact: ' + '{{ location.firstname }}'+' {{location.lastname}}'
+            });
+            infowindow.open(map,marker)
+            marker.setMap(map);
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+
+{% endblock %}
+{% block content %}
+   <div class="container">
+        <div class="jumbotron">
+            <h1>Locations</h1>
+
+            <h2>Show location</h2>
+        </div>
+
+    <div class="row">
+    <div class="col-lg-12">
+        <div id="googleMap"></div>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ location.id }}</td>
+            </tr>
+            <tr>
+                <th>Label</th>
+                <td>{{ location.label }}</td>
+            </tr>
+            <tr>
+                <th>Firstname</th>
+                <td>{{ location.firstname }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ location.lastname }}</td>
+            </tr>
+            <tr>
+                <th>Longitude</th>
+                <td>{{ location.longitude }}</td>
+            </tr>
+            <tr>
+                <th>Latitude</th>
+                <td>{{ location.latitude }}</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>{{ location.address }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ location.telephone }}</td>
+            </tr>
+            <tr>
+                <th>Mobile</th>
+                <td>{{ location.mobile }}</td>
+            </tr>
+            <tr>
+                <th>Fax</th>
+                <td>{{ location.fax }}</td>
+            </tr>
+            <tr>
+                <th>Info</th>
+                <td>{{ location.info }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul class="list-unstyled">
+        <li>
+            <a class="btn btn-default" href="{{ path('location_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a class="btn btn-default" href="{{ path('location_edit', { 'id': location.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input class="btn btn-danger" type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+    </div>
+    </div>
+   </div>
+{% endblock %}

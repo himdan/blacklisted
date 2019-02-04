@@ -1,0 +1,135 @@
+{% extends 'frontoffice.html.twig' %}
+{% block stylesheets %}
+    <style>
+        #map-container { height: 300px }
+    </style>
+{% endblock %}
+{% block headJs %}
+    <script
+            src="http://maps.googleapis.com/maps/api/js">
+    </script>
+
+    <script>
+        var map;
+        var myCenter=new google.maps.LatLng(33.90689555128866,8.7451171875);
+
+        function initialize()
+        {
+            var mapProp = {
+                center:myCenter,
+                zoom:5,
+                mapTypeId:google.maps.MapTypeId.ROADMAP
+            };
+
+            map = new google.maps.Map(document.getElementById("map-container"),mapProp);
+
+            google.maps.event.addListener(map, 'click', function(event) {
+                placeMarker(event.latLng);
+                getLocation(event.latLng);
+            });
+        }
+
+        function placeMarker(location) {
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map,
+            });
+            var infowindow = new google.maps.InfoWindow({
+                content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
+            });
+            infowindow.open(map,marker);
+        }
+
+        function getLocation(location){
+            document.getElementById("location_latitude").value=location.lat();
+            document.getElementById("location_longitude").value=location.lng();
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+{% endblock %}
+{% block content %}
+   <div class="container">
+        <div class="jumbotron">
+            <h1>Location</h1>
+
+            <h2>Edit location</h2>
+        </div>
+
+    <div class="row">
+    <div class="col-lg-12">
+    <div id="map-container"></div>
+    {{ form_start(edit_form) }}
+    
+    <div class="form-group">
+        {{ form_label(edit_form.label)  }}
+        {{ form_errors(edit_form.label) }}
+        {{ form_widget(edit_form.label,{'attr': {'class': 'form-control','placeholder':'label'} }) }}
+            </div>
+    <div class="form-group">
+        {{ form_label(edit_form.firstname)  }}
+        {{ form_errors(edit_form.firstname) }}
+        {{ form_widget(edit_form.firstname,{'attr': {'class': 'form-control','placeholder':'First Name'} }) }}
+            </div> 
+    <div class="form-group">
+        {{ form_label(edit_form.lastname)  }}
+        {{ form_errors(edit_form.lastname) }}
+        {{ form_widget(edit_form.lastname,{'attr': {'class': 'form-control','placeholder':'Last Name'} }) }}
+            </div>
+    <div class="form-group">
+        {{ form_label(edit_form.longitude)  }}
+        {{ form_errors(edit_form.longitude) }}
+        {{ form_widget(edit_form.longitude,{'attr': {'class': 'form-control','placeholder':'Longitude'} }) }}
+            </div> 
+    <div class="form-group">
+        {{ form_label(edit_form.latitude)  }}
+        {{ form_errors(edit_form.latitude) }}
+        {{ form_widget(edit_form.latitude,{'attr': {'class': 'form-control','placeholder':'Latitude'} }) }}
+    </div>  
+    <div class="form-group">
+        {{ form_label(edit_form.address)  }}
+        {{ form_errors(edit_form.address) }}
+        {{ form_widget(edit_form.address,{'attr': {'class': 'form-control','placeholder':'Address'} }) }}
+    </div>   
+    <div class="form-group">
+        {{ form_label(edit_form.telephone)  }}
+        {{ form_errors(edit_form.telephone) }}
+        {{ form_widget(edit_form.telephone,{'attr': {'class': 'form-control','placeholder':'Telephone'} }) }}
+    </div> 
+    <div class="form-group">
+        {{ form_label(edit_form.mobile)  }}
+        {{ form_errors(edit_form.mobile) }}
+        {{ form_widget(edit_form.mobile,{'attr': {'class': 'form-control','placeholder':'Mobile'} }) }}
+    </div>  
+    <div class="form-group">
+        {{ form_label(edit_form.fax)  }}
+        {{ form_errors(edit_form.fax) }}
+        {{ form_widget(edit_form.fax,{'attr': {'class': 'form-control','placeholder':'Fax'} }) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(edit_form.info)  }}
+        {{ form_errors(edit_form.info) }}
+        {{ form_widget(edit_form.info,{'attr': {'class': 'form-control','placeholder':'info'} }) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(edit_form.authority)  }}
+        {{ form_errors(edit_form.authority) }}
+        {{ form_widget(edit_form.authority,{'attr': {'class': 'form-control','placeholder':'authority'} }) }}
+    </div>
+        {{ form_widget(edit_form) }}
+        <input class="btn btn-primary" type="submit" value="Edit" />
+    {{ form_end(edit_form) }}
+
+    <ul class="list-unstyled">
+        <li>
+            <a class="btn btn-default" href="{{ path('location_index') }}">Back to the list</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input class="btn btn-danger" type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+    </div>
+    </div>
+   </div>
+{% endblock %}

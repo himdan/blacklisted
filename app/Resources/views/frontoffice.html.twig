@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="himdanchhimi@gmail.com">
+
+    <title>{% block title %}Welcom{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <!-- Bootstrap Core CSS -->
+    <link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{{ asset('bootstrap/css/round-about.css') }}" rel="stylesheet">
+     {% block headJs %}{% endblock %}
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+   
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Start Blacklist</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ path('homepage') }}">Home</a></li>
+            <li><a href="{{ path('aboutus') }}">About Us</a></li>
+            <li><a href="{{ path('contact') }}">Contact</a></li>
+            <li><a title="view claims" href={{ path('claim_index') }}>My Claims</a></li>
+            <li><a href="{{ path('media_index') }}">Media</a></li>
+            <li>
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                
+                <a href="{{ path('fos_user_security_logout') }}">
+                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                </a>
+            {% else %}
+                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+            {% endif %}
+        </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <div class="container"> 
+                <div class="row">
+                <div class="col-md-12">
+                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} 
+                </div>
+                </div>
+                </div>
+            {% endif %}
+<div class="container">
+ <div class="row">
+
+  <div class="col-md-10">
+        {% block content %}
+    
+        {% endblock %}
+  </div>
+</div>  
+            </div>
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+            <div class="row">
+                <div class="col-lg-4">&nbsp;</div>
+                <div class="col-lg-4">
+                    <p>Copyright &copy; Blacklisted 2016</p>
+                </div>
+                <div class="col-lg-4">&nbsp;</div>
+                <!-- /.col-lg-12 -->
+            </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="{{ asset('bootstrap/js/jquery.js') }}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+    {% block javascripts %}{% endblock %}
+
+</body>
+
+</html>
+

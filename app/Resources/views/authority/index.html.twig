@@ -1,0 +1,61 @@
+{% extends 'frontoffice.html.twig' %}
+
+{% block content %}
+   <div class="container">
+        <div class="jumbotron">
+            <h1>Authorities</h1>
+
+            <h2>manage your Authorties</h2>
+        </div>
+
+    <div class="row">
+    <div class="col-lg-12">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Context</th>
+                <th>HQ Address</th>
+                <th>Description</th>
+                <th>Url</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for authority in authorities %}
+            <tr>
+                <td><a href="{{ path('authority_show', { 'id': authority.id }) }}">{{ authority.id }}</a></td>
+                <td>{{ authority.name }}</td>
+                <td>{{ authority.phone }}</td>
+                <td>{{ authority.context }}</td>
+                <td>{{ authority.hqAdress }}</td>
+                <td>{{ authority.description }}</td>
+                <td><a class="link" href="{{ authority.url }}">{{ authority.url }}</a></td>
+                <td>{{ authority.email }}</td>
+                <td>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a class="btn btn-default" href="{{ path('authority_show', { 'id': authority.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a class="btn btn-default" href="{{ path('authority_edit', { 'id': authority.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        <ul class="list-unstyled">
+        <li>
+            <a class="btn btn-default" href="{{ path('authority_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+    </div>
+    
+    </div>
+   </div>
+{% endblock %}

@@ -1,0 +1,7 @@
+services:
+  bl_crud_service:
+    class: AppBundle\Service\CrudService
+    arguments:
+      - '@doctrine.orm.entity_manager'
+      - '@form.factory'
+
