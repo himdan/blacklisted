@@ -15,7 +15,7 @@ trait SearchTrait
 
 
     protected $columnMaps = [];
-    protected $filtrableFields = [];
+    protected $filterableFields = [];
     /**
      * @param $filters
      * @param $sortColumn
@@ -86,34 +86,34 @@ trait SearchTrait
             // meta type string case
             if (!isset($meta['type']) || "string" === strtolower($meta['type']) || "integer" === strtolower($meta['type'])) {
                 //case senstive and equal
-                $this->filtrableFields[$fieldName] = self::EMPTY_SET;
+                $this->filterableFields[$fieldName] = self::EMPTY_SET;
                 // case insenstive and like
                 $genericIndex = sprintf('%s%s', $fieldName, $this->buildSuffix(self::CASE_UNSENSITIVE));
-                $this->filtrableFields[$genericIndex] = self::EMPTY_SET;
+                $this->filterableFields[$genericIndex] = self::EMPTY_SET;
                 // case simple like
                 $likeIndex = sprintf('%s%s', $fieldName, $this->buildSuffix(self::LIKE_UNSENSITIVE));
-                $this->filtrableFields[$likeIndex] = self::EMPTY_SET;
+                $this->filterableFields[$likeIndex] = self::EMPTY_SET;
             }
             //meta type date case
             if ("date" === strtolower($meta['type'])) {
                 // case Equal
-                $this->filtrableFields[$fieldName] = self::EMPTY_SET;
+                $this->filterableFields[$fieldName] = self::EMPTY_SET;
                 //case low or equals
                 $letIndex = sprintf('%s%s', $fieldName, $this->buildSuffix(self::LOWER_EQUAL));
-                $this->filtrableFields[$letIndex] = self::EMPTY_SET;
+                $this->filterableFields[$letIndex] = self::EMPTY_SET;
                 //case  lower then
                 $ltIndex = sprintf('%s%s', $fieldName, $this->buildSuffix(self::LOWER_THAN));
-                $this->filtrableFields[$ltIndex] = self::EMPTY_SET;
+                $this->filterableFields[$ltIndex] = self::EMPTY_SET;
                 //case greater or equal
                 $getIndex = sprintf('%s%s', $fieldName, $this->buildSuffix(self::GREATER_EQUAL));
-                $this->filtrableFields[$getIndex] = self::EMPTY_SET;
+                $this->filterableFields[$getIndex] = self::EMPTY_SET;
                 $gtIndex = sprintf('%s%s', $fieldName, $this->buildSuffix(self::GREATER_THAN));
-                $this->filtrableFields[$gtIndex] = self::EMPTY_SET;
+                $this->filterableFields[$gtIndex] = self::EMPTY_SET;
             }
             //meta type collection
             if ("collection" === strtolower($meta['type'])) {
                 $genericIndex = sprintf('%s%s', $fieldName, $this->buildSuffix(self::IN_SET));
-                $this->filtrableFields[$genericIndex] = self::EMPTY_SET;
+                $this->filterableFields[$genericIndex] = self::EMPTY_SET;
             }
         }
         foreach ($classMetaData->associationMappings as $fieldName => $meta) {
@@ -121,7 +121,7 @@ trait SearchTrait
             $isOne = $meta['association'] === ClassMetadataInfo::REFERENCE_ONE;
             if ($isReference&&$isOne) {
                 $genericIndex = sprintf('%s%s', $fieldName, $this->buildSuffix(self::REFERENCE_IN));
-                $this->filtrableFields[$genericIndex] = self::EMPTY_SET;
+                $this->filterableFields[$genericIndex] = self::EMPTY_SET;
             }
         }
     }
@@ -143,12 +143,12 @@ trait SearchTrait
      */
     public function getFilterableFields()
     {
-        return $this->filtrableFields;
+        return $this->filterableFields;
     }
 
     public function getFiltrableFieldMap($index)
     {
-        return(array_key_exists($index, $this->filtrableFields))?$this->filtrableFields[$index]:'';
+        return(array_key_exists($index, $this->filterableFields))?$this->filterableFields[$index]:'';
     }
 
     /**

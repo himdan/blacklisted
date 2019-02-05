@@ -10,6 +10,7 @@ namespace AppBundle\Model\Repository;
 
 use AppBundle\Model\ISearch;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder as Builder;
 
 abstract class AbstractEntityRepository extends EntityRepository implements ISearch
@@ -44,7 +45,7 @@ abstract class AbstractEntityRepository extends EntityRepository implements ISea
      * @param int $start
      * @param null $length
      * @param bool $countOnly
-     * @return mixed
+     * @return Query
      */
     public function buildSearchQuery($data = [], $sortColumn, $sortOrder = 'asc', $start = 0, $length = null, $countOnly = false)
     {

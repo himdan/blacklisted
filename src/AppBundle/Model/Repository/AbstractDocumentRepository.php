@@ -49,7 +49,7 @@ abstract class AbstractDocumentRepository extends DocumentRepository implements 
     protected function populateQb(Builder $qb, $data)
     {
         foreach ($data as $fieldName => $fieldValue) {
-            if (!array_key_exists($fieldName, $this->filtrableFields)) {
+            if (!array_key_exists($fieldName, $this->filterableFields)) {
                 continue;
             }
             if (isset($fieldValue)) {
