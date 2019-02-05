@@ -1,0 +1,1 @@
+fos.Router.setData({"base_url":"","routes":{"claims_list":{"tokens":[["text","\/getList"]],"defaults":[],"requirements":[],"hosttokens":[],"methods":[],"schemes":[]},"claim_list":{"tokens":[["text","\/claim\/getList"]],"defaults":[],"requirements":{"_method":"GET"},"hosttokens":[],"methods":["GET"],"schemes":[]}},"prefix":"","host":"localhost","port":"","scheme":"http"});

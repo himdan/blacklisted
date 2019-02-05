@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\ServiceLocation;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -39,6 +40,18 @@ class ClaimController extends Controller
         } else {
             return $this->redirectToRoute('claim_new')  ;
         }
+    }
+    /**
+     * Lists all Claim entities.
+     * @var Request $request
+     * @return JsonResponse
+     * @Route("/getList", name="claim_list",options={"expose"=true})
+     * @Method("GET")
+     */
+    public function listAction(Request $request)
+    {
+        $results = $this->get('bl_request_paginator')->paginate(Claim::class,[],1);
+        return new JsonResponse($results, 200);
     }
 
     /**

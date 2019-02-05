@@ -9,13 +9,14 @@
     <meta name="description" content="">
     <meta name="author" content="himdanchhimi@gmail.com">
 
-    <title>{% block title %}Welcom{% endblock %}</title>
+    <title>{% block title %} Welcome {% endblock %}</title>
     {% block stylesheets %}{% endblock %}
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="{{ asset('bootstrap/css/round-about.css') }}" rel="stylesheet">
+    <link href="{{ asset('DataTables/datatables.css') }}" rel="stylesheet">
      {% block headJs %}{% endblock %}
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,7 +24,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-   
+    <script src="{{ asset('bootstrap/js/jquery.js') }}"></script>
 </head>
 
 <body>
@@ -107,10 +108,15 @@
     <!-- /.container -->
 
     <!-- jQuery -->
-    <script src="{{ asset('bootstrap/js/jquery.js') }}"></script>
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+
 
     <!-- Bootstrap Core JavaScript -->
     <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('DataTables/datatables.js') }}"></script>
+    <script src="{{ asset('DataTables/DataTables-1.10.18/js/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('DataTables/DataTables-1.10.18/js/dataTables.foundation.js') }}"></script>
     {% block javascripts %}{% endblock %}
 
 </body>

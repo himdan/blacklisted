@@ -1,0 +1,6 @@
+claims_list:
+  path:  /getList
+  defaults: { _controller: AppBundle:Claim:list}
+  prefix: /claim
+  options:
+    expose: true

@@ -5,3 +5,17 @@ services:
       - '@doctrine.orm.entity_manager'
       - '@form.factory'
 
+  bl_paginator:
+      class: AppBundle\Service\Paginator
+      arguments:
+        - '@doctrine.orm.entity_manager'
+  bl_request_paginator:
+      class: AppBundle\Service\RequestPaginator
+      arguments:
+        - "@doctrine.orm.entity_manager"
+        - "@request"
+      calls:
+        - method: setSerializer
+          arguments:
+            - '@jms_serializer'
+      scope: request

@@ -1,27 +1,10 @@
-app_resolution:
-    resource: "@AppBundle/Controller/ResolutionController.php"
-    type:     annotation
-
-app_location:
-    resource: "@AppBundle/Controller/LocationController.php"
-    type:     annotation
-
-app_resolution:
-    resource: "@AppBundle/Controller/ResolutionController.php"
-    type:     annotation
-
-app_location:
-    resource: "@AppBundle/Controller/LocationController.php"
-    type:     annotation
-
-app_authority:
-    resource: "@AppBundle/Controller/AuthorityController.php"
-    type:     annotation
-
-app_service_location:
-    resource: "@AppBundle/Controller/ServiceLocationController.php"
-    type:     annotation
-
+front:
+    resource: "@AppBundle/Resources/config/routing/routing.yml"
+    prefix:   /front
+front_ajax:
+    resource: "@AppBundle/Resources/config/routing/routing_ajax.yml"
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
 mobile:
     resource: "@MobileBundle/Controller/"
     type:     annotation

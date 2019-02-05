@@ -16,6 +16,13 @@ use Doctrine\Common\Persistence\ObjectRepository;
 abstract class AbstractPaginator implements IPaginate
 {
 
+    const LENGTH_PARAMS = 'length';
+    const START_PARAMS = 'start';
+    const ORDER_COLUMN_PARAM = 'orderColumn';
+    const ORDER_DIRECTION_PARAM = 'orderDirection';
+    const FILTERED_COUNT = "recordsFiltered";
+    const TOTAL_COUNT = "recordsTotal";
+
     /**
      * @var ObjectManager
      */
