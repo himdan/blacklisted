@@ -51,7 +51,7 @@ class ClaimController extends Controller
     public function listAction(Request $request)
     {
         $results = $this->get('bl_request_paginator')->paginate(Claim::class,[],1);
-        return new JsonResponse($results, 200);
+        return new Response($results, 200);
     }
 
     /**

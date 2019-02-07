@@ -16,7 +16,18 @@
 
     <!-- Custom CSS -->
     <link href="{{ asset('bootstrap/css/round-about.css') }}" rel="stylesheet">
-    <link href="{{ asset('DataTables/datatables.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{asset('DataTables/DataTables-1.10.18/css/jquery.dataTables.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('DataTables/AutoFill-2.3.2/css/autoFill.dataTables.min.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('DataTables/Buttons-1.5.4/css/buttons.dataTables.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('DataTables/ColReorder-1.5.0/css/colReorder.dataTables.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('DataTables/FixedColumns-3.2.5/css/fixedColumns.dataTables.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('DataTables/FixedHeader-3.1.4/css/fixedHeader.dataTables.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('DataTables/KeyTable-2.5.0/css/keyTable.dataTables.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('DataTables/Responsive-2.2.2/css/responsive.dataTables.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('DataTables/RowGroup-1.1.0/css/rowGroup.dataTables.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('DataTables/RowReorder-1.2.4/css/rowReorder.dataTables.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('DataTables/Scroller-1.5.0/css/scroller.dataTables.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('DataTables/Select-1.2.6/css/select.dataTables.css')}}"/>
      {% block headJs %}{% endblock %}
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -24,7 +35,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script src="{{ asset('bootstrap/js/jquery.js') }}"></script>
+    c
 </head>
 
 <body>
@@ -113,10 +124,28 @@
 
 
     <!-- Bootstrap Core JavaScript -->
+    <script src="{{ asset('bootstrap/js/jquery.js') }}"></script>
     <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('DataTables/datatables.js') }}"></script>
-    <script src="{{ asset('DataTables/DataTables-1.10.18/js/jquery.dataTables.js') }}"></script>
-    <script src="{{ asset('DataTables/DataTables-1.10.18/js/dataTables.foundation.js') }}"></script>
+    <script type="text/javascript" src="{{asset('Utitlity/datatable.app.js')}}"></script>
+    <script type="text/javascript" src="{{asset('DataTables/JSZip-2.5.0/jszip.js')}}"></script>
+    <script type="text/javascript" src="{{asset('DataTables/pdfmake-0.1.36/pdfmake.js')}}"></script>
+    <script type="text/javascript" src="{{asset('DataTables/pdfmake-0.1.36/vfs_fonts.js')}}"></script>
+    <script type="text/javascript" src="{{asset('DataTables/DataTables-1.10.18/js/jquery.dataTables.js')}}"></script>
+    <script type="text/javascript" src="{{asset('DataTables/AutoFill-2.3.2/js/dataTables.autoFill.js')}}"></script>
+    <script type="text/javascript" src="{{asset('DataTables/Buttons-1.5.4/js/dataTables.buttons.js')}}"></script>
+    <script type="text/javascript" src="{{asset('DataTables/Buttons-1.5.4/js/buttons.colVis.js')}}"></script>
+    <script type="text/javascript" src="{{asset('DataTables/Buttons-1.5.4/js/buttons.flash.js')}}"></script>
+    <script type="text/javascript" src="{{asset('DataTables/Buttons-1.5.4/js/buttons.html5.js')}}"></script>
+    <script type="text/javascript" src="{{asset('DataTables/Buttons-1.5.4/js/buttons.print.js')}}"></script>
+    <script type="text/javascript" src="{{asset('DataTables/ColReorder-1.5.0/js/dataTables.colReorder.js')}}"></script>
+    <script type="text/javascript" src="{{asset('DataTables/FixedColumns-3.2.5/js/dataTables.fixedColumns.js')}}"></script>
+    <script type="text/javascript" src="{{asset('DataTables/FixedHeader-3.1.4/js/dataTables.fixedHeader.js')}}"></script>
+    <script type="text/javascript" src="{{asset('DataTables/KeyTable-2.5.0/js/dataTables.keyTable.js')}}"></script>
+    <script type="text/javascript" src="{{asset('DataTables/Responsive-2.2.2/js/dataTables.responsive.js')}}"></script>
+    <script type="text/javascript" src="{{asset('DataTables/RowGroup-1.1.0/js/dataTables.rowGroup.js')}}"></script>
+    <script type="text/javascript" src="{{asset('DataTables/RowReorder-1.2.4/js/dataTables.rowReorder.js')}}"></script>
+    <script type="text/javascript" src="{{asset('DataTables/Scroller-1.5.0/js/dataTables.scroller.js')}}"></script>
+    <script type="text/javascript" src="{{asset('DataTables/Select-1.2.6/js/dataTables.select.js')}}"></script>
     {% block javascripts %}{% endblock %}
 
 </body>

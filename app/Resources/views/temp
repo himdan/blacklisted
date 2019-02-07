@@ -1,0 +1,13 @@
+<link rel="stylesheet" type="text/css" href="{{asset('DataTables/DataTables-1.10.18/css/jquery.dataTables.css')}}"/>
+<link rel="stylesheet" type="text/css" href="{{asset('DataTables/AutoFill-2.3.2/css/autoFill.dataTables.min.css')}}"/>
+<link rel="stylesheet" type="text/css" href="{{asset('DataTables/Buttons-1.5.4/css/buttons.dataTables.css')}}"/>
+<link rel="stylesheet" type="text/css" href="{{asset('DataTables/ColReorder-1.5.0/css/colReorder.dataTables.css')}}"/>
+<link rel="stylesheet" type="text/css" href="{{asset('DataTables/FixedColumns-3.2.5/css/fixedColumns.dataTables.css')}}"/>
+<link rel="stylesheet" type="text/css" href="{{asset('DataTables/FixedHeader-3.1.4/css/fixedHeader.dataTables.css')}}"/>
+<link rel="stylesheet" type="text/css" href="{{asset('DataTables/KeyTable-2.5.0/css/keyTable.dataTables.css')}}"/>
+<link rel="stylesheet" type="text/css" href="{{asset('DataTables/Responsive-2.2.2/css/responsive.dataTables.css')}}"/>
+<link rel="stylesheet" type="text/css" href="{{asset('DataTables/RowGroup-1.1.0/css/rowGroup.dataTables.css')}}"/>
+<link rel="stylesheet" type="text/css" href="{{asset('DataTables/RowReorder-1.2.4/css/rowReorder.dataTables.css')}}"/>
+<link rel="stylesheet" type="text/css" href="{{asset('DataTables/Scroller-1.5.0/css/scroller.dataTables.css')}}"/>
+<link rel="stylesheet" type="text/css" href="{{asset('DataTables/Select-1.2.6/css/select.dataTables.css')}}"/>
+ 

@@ -38,7 +38,10 @@ trait SearchTrait
         foreach ($this->buildSearchQuery($filters, $sortColumn, $sortOrder, $page, $max)->execute() as $result) {
             $data[] = ($getObj) ? $result : $this->toJson($result);
         }
-        return compact('data', 'recordsFiltered', 'recordsTotal', 'filters');
+        return array('data' => $data,
+            'recordsFiltered' => (int) $recordsFiltered,
+            'recordsTotal' => (int) $recordsTotal,
+            'filters' => $filters);
     }
     /**
      * Build the column map for sorting
