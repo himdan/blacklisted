@@ -8,7 +8,6 @@
 
 namespace AppBundle\Service;
 
-
 use AppBundle\Model\ISearch;
 use Doctrine\Common\Persistence\ObjectManager;
 use JMS\Serializer\Serializer;
@@ -21,11 +20,11 @@ class RequestPaginator extends Paginator
     /**
      * @var  Serializer $serializer
      */
-    protected  $serializer;
+    protected $serializer;
     /**
      * @var Request $request
      */
-    protected  $request;
+    protected $request;
 
     public function __construct(ObjectManager $om, Request $request)
     {

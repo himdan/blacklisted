@@ -8,7 +8,6 @@
 
 namespace AppBundle\Tests\Repository;
 
-
 use AppBundle\Entity\Claim;
 
 class ClaimRepositoryTest extends AbstractRepositoryTest
@@ -25,11 +24,11 @@ class ClaimRepositoryTest extends AbstractRepositoryTest
             'accountUsername' => 'admin'
         ];
         $result = $repository
-            ->buildSearchQuery($filter, $repository->getOrderColumn(0),'ASC', 0,15)
+            ->buildSearchQuery($filter, $repository->getOrderColumn(0), 'ASC', 0, 15)
             ->execute()
             ;
         $this->assertGreaterThan(0, count($result));
-        $this->assertLessThan(15,count($result));
+        $this->assertLessThan(15, count($result));
     }
 
     /**
@@ -43,11 +42,11 @@ class ClaimRepositoryTest extends AbstractRepositoryTest
             'categoryTitle' => 'Software'
         ];
         $result = $repository
-            ->buildSearchQuery($filter, $repository->getOrderColumn(0),'ASC', 0,15, true)
+            ->buildSearchQuery($filter, $repository->getOrderColumn(0), 'ASC', 0, 15, true)
             ->getSingleScalarResult()
         ;
         $this->assertGreaterThan(0, $result);
-        $this->assertLessThan(15,$result);
+        $this->assertLessThan(15, $result);
     }
 
     /**
@@ -61,10 +60,9 @@ class ClaimRepositoryTest extends AbstractRepositoryTest
             'categoryTitle' => 'XSoftware'
         ];
         $result = $repository
-            ->buildSearchQuery($filter, $repository->getOrderColumn(0),'ASC', 0,15, true)
+            ->buildSearchQuery($filter, $repository->getOrderColumn(0), 'ASC', 0, 15, true)
             ->getSingleScalarResult()
         ;
         $this->assertEquals(0, $result);
     }
-
 }

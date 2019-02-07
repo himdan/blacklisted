@@ -8,7 +8,6 @@
 
 namespace AppBundle\Tests\Service;
 
-
 use AppBundle\Entity\Claim;
 use AppBundle\Service\Paginator;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;

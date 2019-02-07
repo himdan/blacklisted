@@ -8,13 +8,12 @@
 
 namespace AppBundle\Service;
 
-
 use AppBundle\Model\ISearch;
 use AppBundle\Model\Service\AbstractPaginator;
 
 class Paginator extends AbstractPaginator
 {
-    protected  $paginationParams = [
+    protected $paginationParams = [
         'start' => 0,
         'length' => ''
     ];
@@ -31,7 +30,6 @@ class Paginator extends AbstractPaginator
     {
         $this->paginationParams = array_merge($this->paginationParams, $params);
         return $this;
-
     }
     protected function getOrderParams(ISearch $repository, $orderSet)
     {
@@ -40,12 +38,10 @@ class Paginator extends AbstractPaginator
         $orderColumn = $repository->getOrderColumn($order[0]['column'], $orderSet);
         $orderDirection = $order[0]['dir'];
         return compact('orderColumn', 'orderDirection');
-
     }
 
     protected function getFilters(ISearch $repository, $filters)
     {
         return array_merge($repository->getFilterableFields(), $filters);
     }
-
 }

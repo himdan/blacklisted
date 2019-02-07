@@ -8,7 +8,6 @@
 
 namespace AppBundle\Tests\Repository;
 
-
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
@@ -17,7 +16,7 @@ class AbstractRepositoryTest extends KernelTestCase
     /**
      * @var EntityManagerInterface $entityManager
      */
-    protected  $entityManager;
+    protected $entityManager;
 
     protected function setUp()
     {
