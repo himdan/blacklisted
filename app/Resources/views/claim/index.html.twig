@@ -4,211 +4,89 @@
     <div class="container">
         <div class="jumbotron">
             <h1>My Claims</h1>
-
             <h2>manage your claims</h2>
         </div>
+        <div class="row">
+            <form id="searchClaimForm">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Search claim</div>
+                        <div class="panel-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-3">
+                                    <label for="title">Title</label>
+                                    <input name="claimTitle" type="text" class="form-control" id="title" placeholder="title">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="description">Description</label>
+                                    <input name="claimDescription" type="text" class="form-control" id="description" placeholder="Description">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="createdAt">Created at</label>
+                                    <input name="createdAt" type="text" class="form-control" id="createdAt" placeholder="created at">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="category">Category</label>
+                                    <select id="category" class="form-control">
+                                        <option selected>Choose...</option>
+                                        <option>...</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer pull-right">
+                            <button type="reset" class="btn btn-primary">reset</button>
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </div>
+                    </div>
+                </div>
 
-    <div class="row">
-    <div class="col-lg-12">
-    <table id="claims" class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Created At</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {#{% for claim in claims %}#}
-            {#<tr>#}
-                {#<td><a title="{{ claim.title }}" href="{{ path('claim_show', { 'id': claim.id }) }}">{{ claim.id }}</a></td>#}
-                {#<td>{{ claim.title }}</td>#}
-                {#<td>{{ claim.description }}</td>#}
-                {#<td>{% if claim.createdAt %}{{ claim.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>#}
-                {#<td>#}
-                    {#<ul class="list-unstyled">#}
-                        {#<li>#}
+            </form>
+
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Claim list</div>
+                    <div class="panel-body">
+                        <table id="claims" class="table">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Created At</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {#{% for claim in claims %}#}
+                            {#<tr>#}
+                            {#<td><a title="{{ claim.title }}" href="{{ path('claim_show', { 'id': claim.id }) }}">{{ claim.id }}</a></td>#}
+                            {#<td>{{ claim.title }}</td>#}
+                            {#<td>{{ claim.description }}</td>#}
+                            {#<td>{% if claim.createdAt %}{{ claim.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>#}
+                            {#<td>#}
+                            {#<ul class="list-unstyled">#}
+                            {#<li>#}
                             {#<a class="btn btn-primary" href="{{ path('claim_show', { 'id': claim.id }) }}">show</a>#}
-                        {#</li>#}
-                        {#<li>#}
+                            {#</li>#}
+                            {#<li>#}
                             {#<a class="btn btn-warning" href="{{ path('claim_edit', { 'id': claim.id }) }}">edit</a>#}
-                        {#</li>#}
-                    {#</ul>#}
-                {#</td>#}
-            {#</tr>#}
-        {#{% endfor %}#}
-        </tbody>
-    </table>
-    </div>
-    </div>
-           <hr>
-            <p class="text-center"><a href="{{ path('claim_new') }}" class="btn btn-default">Create a new entry</a></p>
+                            {#</li>#}
+                            {#</ul>#}
+                            {#</td>#}
+                            {#</tr>#}
+                            {#{% endfor %}#}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 {% endblock %}
 {% block javascripts %}
-    <script>
-        /**
-         *
-         * @param config
-         * @constructor
-         */
-        function ActionMenu(config)
-        {
-            let self = this;
-            self.actions = Array.isArray(config.actions)?config.actions:[];
-            function build() {
-                let div = $('<div></div>');
-                let ul = $('<ul></ul>').addClass(config.container.classes);
-                self.actions.map(function (item) {
-                    ul.append(buildActionItem(item.classes, item.route, item.param, item.label));
-                });
-                div.append(ul);
-                return div.html();
-            }
-            function buildActionItem(classes, route, param, label) {
-                let link = $('<button></button>')
-                    .addClass(classes)
-                    .attr('id', label.replace(' ', '') + '_' + param.id)
-                    .html(label)
-                ;
-                let li = $('<li></li>').append(link);
-                return li;
-
-            }
-
-            self.build = build;
-
-        }
-        function configFactory(data)
-        {
-            let actions = [
-                {
-                    'label':'Edit',
-                    'classes':'btn btn-warning',
-
-
-                },
-                {
-                    'label':'View detail',
-                    'classes':'btn btn-primary'
-
-                },
-            ].map(function (item) {
-
-                item.route = data.route;
-                item.param = data.param;
-                return item;
-            });
-            let config = {
-                container: {
-                    classes:'list-unstyled'
-                },
-                actions: actions
-
-            }
-            return config;
-        }
-        function buildOptionDt(){
-            let option = {
-
-                "processing": false,
-                "serverSide": true,
-                "responsive": false,
-                "scrollCollapse": true,
-                "scrollX": true,
-                "ajax":{} ,
-                "sAjaxDataProp": "data",
-                "pageLength": 20,
-                "pagingType": "full_numbers",
-                "filter": false,
-                "dom": 'Bfrtip',
-                "language": {
-                    "lengthMenu": "Afficher _MENU_ &eacute;l&eacute;ments",
-                    "zeroRecords": "Aucun &eacute;l&eacute;ment &agrave; afficher",
-                    "info": "Affichage de l'&eacute;l&eacute;ment _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
-                    "infoEmpty": "Affichage de l'&eacute;l&eacute;ment 0 &agrave; 0 sur 0 &eacute;l&eacute;ment",
-                    "infoFiltered": "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
-                    "processing":     '<div class="loading-message "><span>&nbsp;&nbsp;Chargement...</span></div>',
-                    "oPaginate": {
-                        "sFirst":      "Premier",
-                        "sPrevious":   "Pr&eacute;c&eacute;dent",
-                        "sNext":       "Suivant",
-                        "sLast":       "Dernier"
-                    },
-                    buttons: {
-                        colvis: 'Colonnes visibles'
-                    }
-                },
-                "buttons":[] ,
-                "columns":[],
-                "drawCallback": function(){
-
-
-                }
-
-            };
-            return option ;
-        }
-        let zeroConfig = buildOptionDt();
-        zeroConfig.ajax = Routing.generate("claim_list", {});
-        zeroConfig.processing = true;
-        zeroConfig.buttons = [
-            buildExportMenu([1,2,3,4,5,6,7,8,9], 'Claim List'),
-            {
-                extend: 'colvis',
-                columns: ':not(:first-child)',
-                className: 'btn btn-circle btn-sm btn-orange todo-bold visibility'
-            },
-            {
-                text: 'Add new claim <i class="icon-plus"></i>',
-                className: 'btn btn-circle btn-sm btn-orange todo-bold'
-            }
-        ];
-
-
-        zeroConfig.columns = [
-            {data: "id" },
-            {data: "title" },
-            {data: "description"},
-            {data: "created_at"},
-            {
-                mData:null,
-                mRender:function (data) {
-                    console.log(data);
-                    let menuData = {
-                        route:'claim_show',
-                        param:{id:data.id}
-                    };
-                    let config = configFactory(menuData);
-                   return  new ActionMenu(config).build();
-                }
-            }
-        ];
-        zeroConfig.order = [[1, 'asc']];
-
-        (function ($) {
-            zeroConfig.drawCallback = function(){
-                $('button').on('click',function (event) {
-                    let identifier = $(event.target).prop('id').split('_');
-                    let action = identifier[0];
-                    let resource  = identifier[1];
-                    if(action&&resource){
-                        switch (action) {
-                            case 'Edit':
-                                console.log('fire edit modal', resource);
-                                break;
-                            case 'Viewdetail':
-                                console.log('fire view detail', resource);
-                                break;
-                        }
-                    }
-
-                });
-            };
-            $('#claims').DataTable(zeroConfig);
-        })($);
-    </script>
+    <script src="{{ asset('bundles/app/js/app.js') }}"></script>
 {% endblock %}

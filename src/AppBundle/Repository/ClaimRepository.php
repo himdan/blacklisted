@@ -19,7 +19,7 @@ class ClaimRepository extends AbstractEntityRepository
      */
     protected $columnMaps = [
          0 => 'claim.id',
-        'categoryTitle' => 'categoryTitle',
+        'category' => 'category.id',
         'accountUsername' => 'account.username',
         'claimTitle' => 'claim.title',
         'claimDescription' => 'claim.description',
@@ -31,11 +31,16 @@ class ClaimRepository extends AbstractEntityRepository
     protected $filtrableFields = [
         'categoryName' => 'empty',
         'username' => 'empty',
-        'title' => 'empty',
-        'description' => 'empty',
+        'claimTitle' => 'empty',
+        'claimDescription' => 'empty',
         'isService' => 'empty',
 
     ];
+    public function getFilterableFields()
+    {
+        return $this->filtrableFields;
+    }
+
     public function findRecent($max)
     {
          return $this->createQueryBuilder('c')

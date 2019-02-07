@@ -44,6 +44,7 @@ class RequestPaginator extends Paginator
     public function paginate($metaClassName, $filters = array(), $getObj = false, $injectFilter = false, $orderSet = 0)
     {
         $result = parent::paginate($metaClassName, $filters, $getObj, $injectFilter, $orderSet);
+//        return json_encode($filters);
         return $this->serializer->serialize($this->parseResult($result), 'json');
     }
 

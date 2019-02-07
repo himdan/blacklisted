@@ -1,3 +1,112 @@
+
+function parseUrl(search) {
+    return JSON.parse('{"' + search.replace(/&/g, '","')
+        .replace(/=/g,'":"') + '"}',
+        function(key, value) { return key===""?value:decodeURIComponent(value)
+    });
+}
+/**
+ *
+ * @param config
+ * @constructor
+ */
+function ActionMenu(config)
+{
+    let self = this;
+    self.actions = Array.isArray(config.actions)?config.actions:[];
+    function build() {
+        let div = $('<div></div>');
+        let ul = $('<ul></ul>').addClass(config.container.classes);
+        self.actions.map(function (item) {
+            ul.append(buildActionItem(item.classes, item.route, item.param, item.label));
+        });
+        div.append(ul);
+        return div.html();
+    }
+    function buildActionItem(classes, route, param, label) {
+        let link = $('<button></button>')
+            .addClass(classes)
+            .attr('id', label.replace(' ', '') + '_' + param.id)
+            .html(label)
+        ;
+        let li = $('<li></li>').append(link);
+        return li;
+
+    }
+
+    self.build = build;
+
+}
+function configFactory(data)
+{
+    let actions = [
+        {
+            'label':'Edit',
+            'classes':'btn btn-warning',
+
+
+        },
+        {
+            'label':'View detail',
+            'classes':'btn btn-primary'
+
+        },
+    ].map(function (item) {
+
+        item.route = data.route;
+        item.param = data.param;
+        return item;
+    });
+    let config = {
+        container: {
+            classes:'list-unstyled'
+        },
+        actions: actions
+
+    }
+    return config;
+}
+function buildOptionDt(){
+    let option = {
+
+        "processing": true,
+        "serverSide": true,
+        "responsive": false,
+        "scrollCollapse": true,
+        "scrollX": true,
+        "ajax":{} ,
+        "sAjaxDataProp": "data",
+        "pageLength": 20,
+        "pagingType": "full_numbers",
+        "filter": false,
+        "dom": 'Bfrtip',
+        "language": {
+            "lengthMenu": "Afficher _MENU_ &eacute;l&eacute;ments",
+            "zeroRecords": "Aucun &eacute;l&eacute;ment &agrave; afficher",
+            "info": "Affichage de l'&eacute;l&eacute;ment _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+            "infoEmpty": "Affichage de l'&eacute;l&eacute;ment 0 &agrave; 0 sur 0 &eacute;l&eacute;ment",
+            "infoFiltered": "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+            "processing":     '<div class="loading-message "><span>&nbsp;&nbsp;Chargement...</span></div>',
+            "oPaginate": {
+                "sFirst":      "Premier",
+                "sPrevious":   "Pr&eacute;c&eacute;dent",
+                "sNext":       "Suivant",
+                "sLast":       "Dernier"
+            },
+            buttons: {
+                colvis: 'Colonnes visibles'
+            }
+        },
+        "buttons":[] ,
+        "columns":[],
+        "drawCallback": function(){
+
+
+        }
+
+    };
+    return option ;
+}
 function buildExportMenu(columns, title) {
     var icon = "icon-doc";
     var tab = [/*{
